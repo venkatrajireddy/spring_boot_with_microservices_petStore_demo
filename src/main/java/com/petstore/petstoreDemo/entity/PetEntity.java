@@ -22,7 +22,7 @@ public class PetEntity {
 	private Category category;
 	private String [] photoUrls;
 	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "tag_id")
+	@JoinColumn(name = "tag_id", referencedColumnName = "id")
 	private Tag tag;
 
 }
