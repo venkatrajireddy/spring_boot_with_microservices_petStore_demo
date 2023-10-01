@@ -1,4 +1,4 @@
-	package com.petstore.petstoreDemo.controller;
+package com.petstore.petstoreDemo.controller;
 
 import javax.websocket.server.PathParam;
 
@@ -26,39 +26,36 @@ import com.petstore.petstoreDemo.service.PetService;
 @RestController
 @RequestMapping("/pet")
 public class PetController {
-	
+
 	@Autowired
 	PetService petService;
-	
+
 	@GetMapping(path="/{id}", produces = "application/json")
-	public ResponseEntity<Pet> getPetById(@PathVariable("id") int id) throws BadRequest 
-	{
+	public ResponseEntity<Pet> getPetById(@PathVariable("id") int id) throws BadRequest {
+
+		System.out.println("This is one example");
 		try {
-		Pet p= petService.getPetById(id);
-		if(p==null)
-		{
-			throw new PetNotFound("Not found");
-		}
-		}catch(Exception e)
-		{
+			Pet p= petService.getPetById(id);
+			if(p==null) {
+				throw new PetNotFound("Not found");
+			}
+		}catch(Exception e) {
 			throw new BadRequest("Bad Request");
 		}
 		return new ResponseEntity<Pet>(petService.getPetById(id), HttpStatus.OK);
-		
+
 	}
-	
+
 	@PostMapping(path="/create" , consumes = "application/json", produces = "application/json")
-	public ResponseEntity<Pet> postPet(@RequestBody Pet pet)
-	{
-		
+	public ResponseEntity<Pet> postPet(@RequestBody Pet pet) {
+
 		return new ResponseEntity<Pet>(petService.postPet(pet), HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping(path="/{id}")
-	public void deletePetById(@PathVariable("id") int id)
-	{
+	public void deletePetById(@PathVariable("id") int id) {
 		petService.deletePetById(id);
 	}
-	
-	
+
+
 }
