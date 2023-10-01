@@ -35,6 +35,7 @@ public class PetController {
 
 		System.out.println("This is one example");
 		System.out.println("this is second example -- dp");
+		System.out.println("this is third example Rk");
 		try {
 			Pet p= petService.getPetById(id);
 			if(p==null) {
